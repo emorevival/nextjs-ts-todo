@@ -1,1 +1,1 @@
-#Created with create-next-app
+# Created with create-next-app
