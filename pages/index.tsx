@@ -9,7 +9,7 @@ import { ITask } from '../interfaces/Interfaces';
 
 const Home: NextPage = () => {
   const [task, setTask] = useState<string>('');
-  const [deadline, setDeadline] = useState<number>(0);
+  const [deadline, setDeadline] = useState<number>();
   const [todoList, setTodoList] = useState<ITask[]>([]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (

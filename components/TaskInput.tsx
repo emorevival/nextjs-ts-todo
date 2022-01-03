@@ -10,7 +10,7 @@ interface Props {
 const TaskInput = (props: Props) => {
   return (
     <div className='input-container flex flex-col justify-center items-center gap-3'>
-      <div className='flex flex-col w-80 gap-3'>
+      <div className='flex flex-col md:w-80 w-64 gap-3'>
         <input
           className='p-2 rounded'
           type='text'
@@ -30,7 +30,7 @@ const TaskInput = (props: Props) => {
         />
       </div>
       <button
-        className='bg-white p-3 w-36 transition ease-in-out duration-300 rounded hover:scale-110'
+        className='bg-white p-3 md:w-36 w-28 transition ease-in-out duration-300 rounded hover:scale-110'
         onClick={props.addTask}>
         Add task
       </button>
