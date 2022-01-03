@@ -24,7 +24,7 @@ const TaskInput = (props: Props) => {
           type='number'
           min={0}
           name='deadline'
-          value={props.deadline}
+          value={props.deadline && props.deadline >= 0 ? props.deadline : ''}
           placeholder='Deadline (in days)'
           onChange={props.handleChange}
         />
