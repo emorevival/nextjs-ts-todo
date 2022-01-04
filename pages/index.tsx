@@ -1,10 +1,10 @@
+import { Divider } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { ChangeEvent, ChangeEventHandler, useState } from 'react';
 import TaskInput from '../components/TaskInput';
 import TaskList from '../components/TaskList';
 import Title from '../components/Title';
-import { TodoTask } from '../components/TodoTask';
 import { ITask } from '../interfaces/Interfaces';
 
 const Home: NextPage = () => {
@@ -64,6 +64,7 @@ const Home: NextPage = () => {
         handleNumberChange={handleNumberChange}
         taskName={task}
       />
+      {todoList.length > 0 && <Divider w='50%' orientation='horizontal' />}
       <TaskList completeTask={completeTask} todoList={todoList} />
     </>
   );

@@ -1,3 +1,4 @@
+import { AddIcon } from '@chakra-ui/icons';
 import {
   Button,
   Input,
@@ -72,7 +73,11 @@ const TaskInput = (props: Props) => {
         onClick={props.addTask}>
         Add task
       </button> */}
-      <Button variant='ghost' colorScheme='whiteAlpha' onClick={props.addTask}>
+      <Button
+        variant='ghost'
+        rightIcon={<AddIcon w={3} h={3} />}
+        colorScheme='whiteAlpha'
+        onClick={props.addTask}>
         Add task
       </Button>
     </div>
