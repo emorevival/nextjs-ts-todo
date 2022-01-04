@@ -12,14 +12,25 @@ const Home: NextPage = () => {
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodoList] = useState<ITask[]>([]);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (
-    event: ChangeEvent<HTMLInputElement>
+  // const handleChange: ChangeEventHandler<HTMLInputElement> = (
+  //   event: ChangeEvent<HTMLInputElement>
+  // ): void => {
+  //   if (event.currentTarget.name === 'task') {
+  //     setTask(event.currentTarget.value);
+  //   } else {
+  //     setDeadline(Number(event.currentTarget.value));
+  //   }
+  // };
+
+  const handleTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setTask(event.currentTarget.value);
+  };
+
+  const handleNumberChange = (
+    valueAsString: string,
+    valueAsNumber: number
   ): void => {
-    if (event.currentTarget.name === 'task') {
-      setTask(event.currentTarget.value);
-    } else {
-      setDeadline(Number(event.currentTarget.value));
-    }
+    setDeadline(valueAsNumber);
   };
 
   const addTask = (): void => {
@@ -49,7 +60,8 @@ const Home: NextPage = () => {
       <TaskInput
         addTask={addTask}
         deadline={deadline}
-        handleChange={handleChange}
+        handleTextChange={handleTextChange}
+        handleNumberChange={handleNumberChange}
         taskName={task}
       />
       <TaskList completeTask={completeTask} todoList={todoList} />
