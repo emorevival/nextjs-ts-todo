@@ -1,7 +1,7 @@
-import { Divider } from '@chakra-ui/react';
+import { Box, Divider, useToast } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import TaskInput from '../components/TaskInput';
 import TaskList from '../components/TaskList';
 import Title from '../components/Title';
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const [task, setTask] = useState<string>('');
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodoList] = useState<ITask[]>([]);
-
+  const toast = useToast();
   // const handleChange: ChangeEventHandler<HTMLInputElement> = (
   //   event: ChangeEvent<HTMLInputElement>
   // ): void => {
@@ -35,18 +35,32 @@ const Home: NextPage = () => {
 
   const addTask = (): void => {
     if (!task || !deadline) return;
+    if (todoList.some((todo) => todo.taskName === task)) {
+      toast({
+        position: 'bottom-left',
+        duration: 2500,
+        status: 'error',
+        title: 'You have already added this task!',
+      });
+      return;
+    }
     const newTask: ITask = {
       taskName: task,
       deadline: deadline,
     };
     setTodoList([...todoList, newTask]);
-    console.log(todoList);
     setTask('');
     setDeadline(0);
   };
 
   const completeTask = (taskNameToDelete: string): void => {
     setTodoList(todoList.filter((task) => task.taskName !== taskNameToDelete));
+    toast({
+      position: 'bottom-left',
+      duration: 2500,
+      status: 'success',
+      title: 'Well done!',
+    });
   };
 
   return (
