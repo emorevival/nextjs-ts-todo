@@ -7,7 +7,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className='relative w-full'>
+    <div className='relative w-full overflow-x-hidden'>
       <div className='bg-red-300 top-32 bottom-32 left-20 w-72 h-72 absolute rounded-full mix-blend-multiply filter blur-lg animate-blob animation-delay-4000' />
       <div className='bg-yellow-300 top-8 left-64 w-72 h-72 absolute rounded-full mix-blend-multiply filter blur-lg animate-blob animation-delay-2000' />
       <div className='bg-cyan-300 top-56 right-96 left-32 w-72 h-72 absolute rounded-full mix-blend-multiply filter blur-lg animate-blob animation-delay-2000' />
