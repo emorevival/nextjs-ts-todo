@@ -1,16 +1,23 @@
 import { Box, Divider, useToast } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import TaskInput from '../components/TaskInput';
 import TaskList from '../components/TaskList';
 import Title from '../components/Title';
 import { ITask } from '../interfaces/Interfaces';
 
 const Home: NextPage = () => {
+  const initialTodoList = (): ITask[] | [] => {
+    if (typeof window !== 'undefined') {
+      const data = window.localStorage.getItem('todo-list');
+      if (data) return JSON.parse(data);
+    }
+    return [];
+  };
   const [task, setTask] = useState<string>('');
   const [deadline, setDeadline] = useState<number>(0);
-  const [todoList, setTodoList] = useState<ITask[]>([]);
+  const [todoList, setTodoList] = useState<ITask[] | []>(initialTodoList);
   const toast = useToast();
   // const handleChange: ChangeEventHandler<HTMLInputElement> = (
   //   event: ChangeEvent<HTMLInputElement>
@@ -21,6 +28,19 @@ const Home: NextPage = () => {
   //     setDeadline(Number(event.currentTarget.value));
   //   }
   // };
+
+  // less efficient
+
+  // useEffect(() => {
+  //   const data = localStorage.getItem('todo-list');
+  //   if (data) {
+  //     setTodoList(JSON.parse(data));
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todo-list', JSON.stringify(todoList));
+  }, [todoList]);
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setTask(event.currentTarget.value);
