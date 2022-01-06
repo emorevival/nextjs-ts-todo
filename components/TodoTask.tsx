@@ -11,8 +11,8 @@ export const TodoTask = ({ task, completeTask }: Props) => {
   return (
     <div className='task flex justify-between items-center gap-2 mb-3'>
       <div className='content w-52 md:w-96 flex gap-3 justify-between items-center'>
-        <p className='text-white text-lg'>{task.taskName}</p>
-        <p className='text-gray-400 text-sm text-right md:w-22 sm:w-22 lg:w-20'>
+        <p className='text-black dark:text-white text-lg'>{task.taskName}</p>
+        <p className='text-black dark:text-gray-400 text-sm text-right md:w-22 sm:w-22 lg:w-20'>
           Days left to complete: {task.deadline}
         </p>
       </div>

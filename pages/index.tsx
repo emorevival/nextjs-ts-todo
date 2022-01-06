@@ -1,5 +1,6 @@
 import { Box, Divider, useToast } from '@chakra-ui/react';
 import type { NextPage } from 'next';
+import { useTheme } from 'next-themes';
 import Head from 'next/head';
 import { ChangeEvent, useEffect, useState } from 'react';
 import TaskInput from '../components/TaskInput';
@@ -9,7 +10,7 @@ import { ITask } from '../interfaces/Interfaces';
 
 const Home: NextPage = () => {
   const initialTodoList = (): ITask[] | [] => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && window.localStorage) {
       const data = window.localStorage.getItem('todo-list');
       if (data) return JSON.parse(data);
     }
@@ -18,6 +19,8 @@ const Home: NextPage = () => {
   const [task, setTask] = useState<string>('');
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodoList] = useState<ITask[] | []>(initialTodoList);
+  const { theme, setTheme } = useTheme();
+
   const toast = useToast();
   // const handleChange: ChangeEventHandler<HTMLInputElement> = (
   //   event: ChangeEvent<HTMLInputElement>
@@ -98,7 +101,13 @@ const Home: NextPage = () => {
         handleNumberChange={handleNumberChange}
         taskName={task}
       />
-      {todoList.length > 0 && <Divider w='50%' orientation='horizontal' />}
+      {todoList.length > 0 && (
+        <Divider
+          borderColor={theme === 'light' ? 'black' : 'white'}
+          w='50%'
+          orientation='horizontal'
+        />
+      )}
       <TaskList completeTask={completeTask} todoList={todoList} />
     </>
   );

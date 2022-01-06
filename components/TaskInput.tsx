@@ -8,6 +8,7 @@ import {
   NumberInputField,
   NumberInputStepper,
 } from '@chakra-ui/react';
+import { useTheme } from 'next-themes';
 import React, { ChangeEvent } from 'react';
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const TaskInput = (props: Props) => {
+  const { theme, setTheme } = useTheme();
   return (
     <div className='input-container flex flex-col justify-center items-center gap-7'>
       <div className='flex flex-col md:w-80 w-64 gap-6'>
@@ -41,17 +43,25 @@ const TaskInput = (props: Props) => {
         /> */}
         <Input
           placeholder='Insert a task...'
-          className='text-white'
+          className='text-black dark:text-white'
           size='md'
           variant='flushed'
+          borderColor={theme === 'light' ? 'black' : 'white'}
           value={props.taskName}
+          _placeholder={{
+            color: theme === 'light' ? 'black.400' : 'white.500',
+          }}
           name='task'
           onChange={props.handleTextChange}
         />
         <NumberInput
-          className='text-white'
+          className='text-black dark:text-white'
           inputMode='numeric'
           variant='flushed'
+          borderColor={theme === 'light' ? 'black' : 'white'}
+          _placeholder={{
+            color: theme === 'light' ? 'black.400' : 'white.500',
+          }}
           onChange={props.handleNumberChange}
           value={props.deadline && props.deadline >= 0 ? props.deadline : ''}
           min={0}>
@@ -76,7 +86,8 @@ const TaskInput = (props: Props) => {
       <Button
         variant='ghost'
         rightIcon={<AddIcon w={3} h={3} />}
-        colorScheme='whiteAlpha'
+        // colorScheme='whiteAlpha'
+        colorScheme='green'
         onClick={props.addTask}>
         Add task
       </Button>
