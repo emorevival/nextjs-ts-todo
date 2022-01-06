@@ -6,13 +6,13 @@ import { ThemeProvider } from 'next-themes';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
-      <ThemeProvider attribute='class'>
+    <ThemeProvider attribute='class'>
+      <ChakraProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </ThemeProvider>
-    </ChakraProvider>
+      </ChakraProvider>
+    </ThemeProvider>
   );
 }
 
