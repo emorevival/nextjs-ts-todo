@@ -1,7 +1,7 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { IconButton } from '@chakra-ui/react';
 import { useTheme } from 'next-themes';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from './Footer';
 
 interface Props {
@@ -10,7 +10,12 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
+  // When mounted on client, now we can show the UI
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
   return (
     <div className='relative w-full overflow-x-hidden'>
       <div className='bg-red-300 top-32 bottom-32 left-20 w-72 h-72 absolute rounded-full mix-blend-multiply filter blur-lg animate-blob animation-delay-4000' />
@@ -24,13 +29,15 @@ const Layout = ({ children }: Props) => {
           className='m-3 dark:bg-slate-700'
           backgroundColor='#e5e7eb' //fuck it i cba to pull the entire configuration just for one colour
           right='0px'
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          onClick={() =>
+            theme === 'light' ? setTheme('dark') : setTheme('light')
+          }
           aria-label='Switch to between light and dark mode'
           icon={
-            theme === 'dark' ? (
-              <SunIcon className='dark:text-white' />
+            theme === 'light' ? (
+              <MoonIcon className='dark:text-white' />
             ) : (
-              <MoonIcon />
+              <SunIcon className='dark:text-white' />
             )
           }
         />
