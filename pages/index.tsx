@@ -1,4 +1,4 @@
-import { Box, Divider, useToast } from '@chakra-ui/react';
+import { Divider, useToast } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { useTheme } from 'next-themes';
 import Head from 'next/head';
@@ -22,24 +22,6 @@ const Home: NextPage = () => {
   const { theme, setTheme } = useTheme();
 
   const toast = useToast();
-  // const handleChange: ChangeEventHandler<HTMLInputElement> = (
-  //   event: ChangeEvent<HTMLInputElement>
-  // ): void => {
-  //   if (event.currentTarget.name === 'task') {
-  //     setTask(event.currentTarget.value);
-  //   } else {
-  //     setDeadline(Number(event.currentTarget.value));
-  //   }
-  // };
-
-  // less efficient
-
-  // useEffect(() => {
-  //   const data = localStorage.getItem('todo-list');
-  //   if (data) {
-  //     setTodoList(JSON.parse(data));
-  //   }
-  // }, []);
 
   useEffect(() => {
     localStorage.setItem('todo-list', JSON.stringify(todoList));

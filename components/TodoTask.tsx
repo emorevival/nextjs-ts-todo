@@ -16,19 +16,6 @@ export const TodoTask = ({ task, completeTask }: Props) => {
           Days left to complete: {task.deadline}
         </p>
       </div>
-      {/* <button
-        className='complete-task border-white border-4 rounded bg-white text-xs'
-        onClick={() => completeTask(task.taskName)}>
-        <span className='emoji'>Done✔️</span>
-      </button> */}
-      {/* <IconButton
-        onClick={() => completeTask(task.taskName)}
-        aria-label='Mark task as completed'
-        size='sm'
-        variant='link'
-        colorScheme='green'
-        icon={<CheckIcon />}
-      /> */}
       <Button
         leftIcon={<CheckIcon />}
         marginLeft='.85rem'
