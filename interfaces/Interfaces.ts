@@ -1,4 +1,7 @@
 export interface ITask {
   taskName: string;
-  deadline: number;
+  deadline: {
+    taskDate: Date;
+    taskTime: Date;
+  };
 }

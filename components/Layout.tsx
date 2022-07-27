@@ -1,4 +1,3 @@
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { IconButton } from '@chakra-ui/react';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
@@ -23,7 +22,7 @@ const Layout = ({ children }: Props) => {
       <div className='bg-cyan-300 top-56 right-96 left-32 w-72 h-72 absolute rounded-full mix-blend-multiply filter blur-lg animate-blob animation-delay-2000' />
       <div className='bg-purple-300 top-52 left-60 w-72 h-72 absolute rounded-full mix-blend-multiply filter blur-lg animate-blob animation-delay-4000' />
       <div className='min-h-[calc(100vh_-_3rem)] opacity-80 dark:opacity-90 relative bg-gray-200 dark:bg-slate-900 flex flex-col justify-center items-center gap-16 pb-7 transition duration-700'>
-        <IconButton
+        {/* <IconButton
           position='absolute'
           top='0px'
           className='m-3 dark:bg-slate-700'
@@ -40,7 +39,7 @@ const Layout = ({ children }: Props) => {
               <SunIcon className='dark:text-white' />
             )
           }
-        />
+        /> */}
         {children}
       </div>
       <Footer />
