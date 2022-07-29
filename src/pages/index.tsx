@@ -1,12 +1,19 @@
+import type { NextPage } from "next";
+import Head from "next/head";
+import { trpc } from "../utils/trpc";
 import { Divider, useToast } from '@chakra-ui/react';
-import type { NextPage } from 'next';
 import { useTheme } from 'next-themes';
-import Head from 'next/head';
 import { ChangeEvent, useEffect, useState } from 'react';
 import TaskInput from '../components/TaskInput';
 import TaskList from '../components/TaskList';
 import Title from '../components/Title';
 import { ITask } from '../interfaces/Interfaces';
+
+type TechnologyCardProps = {
+  name: string;
+  description: string;
+  documentation: string;
+};
 
 const Home: NextPage = () => {
   const initialTodoList = (): ITask[] | [] => {
